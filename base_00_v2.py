@@ -1,7 +1,8 @@
 #Importing useful repositories just in case
-import re #Not fully sure if I used this
+import re #Not fully sure if I used this but keeping just in case - I added it at the start
 import pandas #Def used a lot.
 
+#Is an input blank or not? - read more about this in Talking About Making This.md
 def not_blank(question):
   valid = False
 
@@ -16,6 +17,7 @@ def not_blank(question):
     else:
       print("Sorry - this can’t be blank, please enter a product name.")
 
+#Checking if interger - read more about this in Talking About Making This.md
 def int_check(question, error, minnum, blank_0):
 
     valid = False
@@ -43,6 +45,7 @@ def int_check(question, error, minnum, blank_0):
         print(error)
         return "error"
 
+#String checking - read more about this in Talking About Making This.md
 def string_check(choice, options):
 
     is_valid = ""
@@ -69,38 +72,45 @@ def string_check(choice, options):
         print("Please enter a valid option")
         print()
         return "invalid choice"
-      
+
+#A "yes" and a "no"
 yesno = [
   ["yes", "y", "ye"], 
   ["no", "n"]
 ]
 
+#Getting Dollars and Cents - read more about this in Talking About Making This.md
 def dolcen(question, error, cur_yn):
   dolcen_error = ""
+  #Loop in case of bad input
   while dolcen_error != "good":
     print(question)
+    #Ask for dollars
     dolcen_dol = int_check("Dollars = $", numerror, -1, "y")
     if dolcen_dol == "error":
       dolcen_error = "error"
     else:
       print(question)
+      #Ask for cents
       dolcen_cent = int_check("Cents = ¢", numerror, -1, "y")
       if dolcen_cent == "error":
         dolcen_error = "error"
       else:
         dolcen_error = "good"
+  #Convert to decimals
   dolcen_bal = dolcen_dol + (dolcen_cent / 100)
+  #In dollars formatting or not?
   if cur_yn == 1:
     dolcen_bal_cur = currency(dolcen_bal)
     return dolcen_bal_cur
   else:
     return dolcen_bal
   
-#Currency
+#Currency - converting a number to 2 dp and adding a dollar sign in front
 def currency(x):
   return "${:.2f}".format(x)
   
-#Weight
+#Weight - putting 2 items right next to each other
 def weight(a, b):
   return "{}{}".format(a, b)
   
@@ -119,6 +129,7 @@ while bal_dolcen_check == 0:
   else:
     bal_dolcen_check = 1
 
+#Lists to make the dictionary work.
 products = []
 grams = []
 kilograms = []
@@ -128,6 +139,7 @@ cost_dolcen_listg = []
 cost_dolcen_listgc = []
 comparingstuff_list = [products, grams, kilograms, cost_dolcen_lista, cost_dolcen_listgc]
 
+#What will eventually become the table, in dictionary form.
 comparing_dict = {
   'Product': products,
   'Grams': grams,
@@ -161,9 +173,10 @@ while endloopb != "Yes":
 
     gramcheck = ""
     while gramcheck != "good":
-      #Asking weight in grams then auto convert.
+      #Asking weight in grams.
       gram = int_check("Please enter, in grams, the weight of the product. Full number only. \n", numerror, 0, "n")
-      
+
+      #Checking if input is valid and if it is, converts and prints out in grams and kilograms.
       gramcheck = ""
       if gram == "error":
         gramcheck = "error"
@@ -174,35 +187,42 @@ while endloopb != "Yes":
         gramcheck = "good"
         continue
 
+    #Adding g and kg to the end of the weights + adding to eventual table.
     gframe = weight(gram, "g")
     kgframe = weight(kilogram, "kg")
     grams.append(gframe)
     kilograms.append(kgframe)
-    
+
+    #Inputting cost in dollars then cents.
     cost_dolcen_b = dolcen("Please enter the cost of that product in that weight.", numerror, 0)
+    #Converting in a copy the above input to dollars and cents.
     cost_dolcen_a = currency(cost_dolcen_b)
+    #Adding to the eventual table.
     cost_dolcen_lista.append(cost_dolcen_a)
     cost_dolcen_listb.append(cost_dolcen_b)
     print()
-    
+
+    #Price Per Gram
     cost_dolcen_g = cost_dolcen_b / gram
     cost_dolcen_gc = currency(cost_dolcen_g)
     cost_dolcen_listg.append(cost_dolcen_g)
     cost_dolcen_listgc.append(cost_dolcen_gc)
+    print("Price of the product per gram:", cost_dolcen_gc)
     #Increasing shown list number
     listnum = listnum + listnuma
 
-    
+#Making dataframes - both long and short
 comparing_frame = pandas.DataFrame(comparing_dict)
-comparing_frame = comparing_frame.sort_values(axis=0, by='PPG')
+comparing_frame = comparing_frame.sort_values(axis=0, by='PPG (NF)')
 comparing_frame_print = comparing_frame.drop('Cost (NF)', axis=1)
 comparing_frame_print = comparing_frame_print.drop('Grams', axis=1)
 comparing_frame_print = comparing_frame_print.drop('PPG (NF)', axis=1)
 
-
+#Table Printing
 print('The top row below the titles is the one that is best value per dollar. Please note that in the output folder is both the table below and a bigger one as .csv files.')
 print(comparing_frame_print)
 print('PPG = Price Per Gram.')
 
+#Exporting 2 csv files with both short and long tables.
 comparing_frame.to_csv("output/comparing_full.csv")
 comparing_frame_print.to_csv("output/comparing_short.csv")
