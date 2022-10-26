@@ -18,8 +18,6 @@ def not_blank(question):
 
 def int_check(question, error, minnum):
 
-    error = "Please enter a whole number that is more than 0"
-
     valid = False
     while not valid:
 
@@ -79,8 +77,17 @@ def currency(x):
 #Budget for shopping
 numerror = "Error: Either not in grams, is lower than the minimum for this input, has decimal, or not a number."
 
-baldol = int_check("Please enter your budget. Dollars = $", numerror, 0)
-balcen = int_check("Please enter your budget. Cents = ¢", numerror, -1)
+balerror = ""
+while balerror != "good":
+  baldol = int_check("Please enter your budget. Dollars = $", numerror, 0)
+  if baldol == "error":
+    balerror = "error"
+  else:
+    balcen = int_check("Please enter your budget. Cents = ¢", numerror, -1)
+    if balcen == "error":
+      balerror = "error"
+    else:
+      balerror = "good"
 baldolcen = baldol + (balcen / 100)
 baldolcencur = currency(baldolcen)
 print(baldolcencur)
@@ -109,21 +116,20 @@ while endloopb != "Yes":
     endloopa = not_blank("Do you want to stop looping the code? ").lower()
     endloopb = string_check(endloopa, yesno)
     print(endloopb)
-  if endloopb == "No" or listnum == 1:
+  if endloopb == "No" or listnum <= 2:
+    print("Product number", listnum - 1)
     product = not_blank("Please enter the name of a product that you wish to add to the list. \n")
     products.append(product)
     
-    while gram != "error":
-      gram = int_check("Please enter, in grams, the weight of the product. Full number only. \n", numerror, 0)
-      if gram != "error":
-        kilogram = gram / 1000
-        print("Kilograms:", kilogram)
-      
-        grams.append(gram)
-        kilograms.append(kilogram)
-        continue
+    gram = int_check("Please enter, in grams, the weight of the product. Full number only. \n", numerror, 0)
+    if gram != "error":
+      kilogram = gram / 1000
+      print("Kilograms:", kilogram)
+    
+      grams.append(gram)
+      kilograms.append(kilogram)
   
-  listnum = listnum + 1
+    listnum = listnum + 1
     
 print(product)
 print(grams)
