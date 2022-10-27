@@ -16,13 +16,13 @@ Note that I don't have slides or a trello for this due to not having that good o
 
 **PARTS**
 
-- main.py = Loads in the base.
+- [main.py](main.py) = Loads in the base. Does literally nothing else.
 - base_00_vx.py = Base component, x = version number
-  - v1 = Has the budget, looping, exit looping, product name, weight, and that's basically it. Early version of v2.
-  - v2 = Same as v1 but moved the buget to a seperate definition part and reused for product costs. Also adds figuring out price per kg and outputting to files.
+  - [v1](old_files/base_00_v1.py) = Has the budget, looping, exit looping, product name, weight, and that's basically it. Early version of v2.
+  - [v2](base_00_v2.py) = Same as v1 but moved the buget to a seperate definition part and reused for product costs. Also adds figuring out price per kg and outputting to files.
 - output = Folder with outputted files.
-  - comparing_full.csv = Most of the stuff used for calculating the output.
-  - comparing_short.csv = The short version showed at the end of using the program.
-- [Talking About Making This.md](Talking_About_Making_This.md) = A write up about each part of base_00_v2.py and about making the program.
+  - [comparing_full.csv](output/comparing_full.csv) = Most of the stuff used for calculating the output.
+  - [comparing_short.csv](output/comparing_short.csv) = The short version showed at the end of using the program.
+- [TAMT.md](TAMT.md) = A write up about each part of base_00_v2.py and about making the program. Full name: Talking About Making This
 
 Program includes test versions of the output folder stuff.

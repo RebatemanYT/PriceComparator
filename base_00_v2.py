@@ -1,5 +1,7 @@
 #Importing useful repositories just in case
-import re #Not fully sure if I used this but keeping just in case - I added it at the start
+
+import re #Not fully sure if I used this but keeping just in case - I added it at the start just in case and don't remember what it does (it was used in a previous project by me)
+
 import pandas #Def used a lot.
 
 #Is an input blank or not? - read more about this in Talking About Making This.md
@@ -168,13 +170,13 @@ while endloopb != "Yes":
     print("Product number", listnum)
     
     #Asking for name of product.
-    product = not_blank("Please enter the name of a product that you wish to add to the list. \n")
+    product = not_blank("Please enter the name of a product that you wish to add to the list. \nName: ")
     products.append(product)
 
     gramcheck = ""
     while gramcheck != "good":
       #Asking weight in grams.
-      gram = int_check("Please enter, in grams, the weight of the product. Full number only. \n", numerror, 0, "n")
+      gram = int_check("Please enter, in grams, the weight of the product. Full number only. \nIf it is written in kilograms, times that by 1000 for this. \nGrams: ", numerror, 0, "n")
 
       #Checking if input is valid and if it is, converts and prints out in grams and kilograms.
       gramcheck = ""
@@ -182,7 +184,6 @@ while endloopb != "Yes":
         gramcheck = "error"
       if gramcheck != "error":
         kilogram = gram / 1000
-        print("Grams:", gram)
         print("Kilograms:", kilogram)
         gramcheck = "good"
         continue
@@ -219,7 +220,7 @@ comparing_frame_print = comparing_frame_print.drop('Grams', axis=1)
 comparing_frame_print = comparing_frame_print.drop('PPG (NF)', axis=1)
 
 #Table Printing
-print('The top row below the titles is the one that is best value per dollar. Please note that in the output folder is both the table below and a bigger one as .csv files.')
+print('The top row below the titles is the one that is best value per dollar. \nPlease note that in the output folder is both the table below and a bigger one as .csv files.')
 print(comparing_frame_print)
 print('PPG = Price Per Gram.')
 

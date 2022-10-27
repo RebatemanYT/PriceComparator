@@ -2,14 +2,14 @@ So how did I make this?
 
 Due to it being better for me for productivity, I did all of it in the base file without having seperate files for making components on their own.
 
-- base_00_v1.py is the starting version that had been made in 1 or 2 sessions.
-- base_00_v2.py is what I continued and finished the program on.
+- [base_00_v1.py](old_files/base_00_v1.py) is the starting version that had been made in 1 or 2 sessions.
+- [base_00_v2.py](base_00_v2.py) is what I continued and finished the program on.
 
 You can read about other files in the [readme](readme.md).
 
 **Individual Parts of base_00_v2.py:**
 - Definitions:
-  - def not_blank(question):
+  - [def not_blank(question)](base_00_v2.py:8):
     - Asks a question and returns an error if blank. If not blank, it returns the input.
   def int_check(question, error, minnum, blank_0):
     - Checks if something is an interger and if blank_0 is set to "y", it will act like a blank answer is 0. If it isn't fully an interger, is 0 while blank_0 isn't "y" and is smaller than minnum, it gives an error.
@@ -32,3 +32,4 @@ But at the beginning of making this, I had a bit of struggle in figuring out the
 
 And I just did that while writing this. I hope someone reads this. And if you do, here's a little thanks:
 
+Anyways, if you 
