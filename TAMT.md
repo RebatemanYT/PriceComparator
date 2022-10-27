@@ -9,7 +9,7 @@ You can read about other files in the [readme](readme.md).
 
 **Individual Parts of base_00_v2.py:**
 - Definitions:
-  - [def not_blank(question)](base_00_v2.py:8):
+  - def not_blank(question):
     - Asks a question and returns an error if blank. If not blank, it returns the input.
   def int_check(question, error, minnum, blank_0):
     - Checks if something is an interger and if blank_0 is set to "y", it will act like a blank answer is 0. If it isn't fully an interger, is 0 while blank_0 isn't "y" and is smaller than minnum, it gives an error.
@@ -30,6 +30,8 @@ At first, I didn't have much of a plan for how to code this. I didn't even know 
 
 But at the beginning of making this, I had a bit of struggle in figuring out the groove of things. I hadn't done coding before without a tutorial (outside of Scratch, WarioWare DIY and very bad Unity attempts) and it was going to be my second ever code written in Python (the first being the previous work with the tutorial). However, I figured out how to do all of it and I never made a trello board or a slide show for it. That did mean that some of my thought process behind the coding wasn't ever written down. That isn't helped with me getting too distracted by coding and debugging to write comments. That would have been a big help but too late now to do them while making each part of the code. However, I can still comment post-coding.
 
-And I just did that while writing this. I hope someone reads this. And if you do, here's a little thanks:
+And I just did that while writing this. I hope someone reads this. And if you do, here's a little thanks (a video of me using the program): https://youtu.be/mPxxKxzrH_w
 
-Anyways, if you 
+Anyways, after all of that, I still don't know how to read from a csv file with the pandas repository so it doesn't fully meet the guidelines set by the task. If you were wanting the video for the briefing, here it is: https://www.youtube.com/watch?v=I5Qm8at-IEg. It's just a short video from a school teaching kit but without it, this wouldn't have been done. So yeah, I need a break... and to figure out if I have finished this.
+
+Anyways, thanks for reading this.
